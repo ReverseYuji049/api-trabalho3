@@ -30,7 +30,17 @@ db.serialize(() => {
       FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
     )
   `);
-  db.run('ALTER TABLE livros ADD COLUMN usuario_id INTEGER;')
+   // Verifica se a coluna já existe antes de adicionar
+  db.all("PRAGMA table_info(livros);", (err, columns) => {
+    if (err) return console.error(err);
+
+    const exists = columns.some(col => col.name === "usuario_id");
+
+    if (!exists) {
+      db.run("ALTER TABLE livros ADD COLUMN usuario_id INTEGER;");
+      console.log("Coluna usuario_id adicionada!");
+    }
+  });
 });   
 
 // Mensagem para confirmar que o banco de dados foi aberto/carregado
