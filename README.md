@@ -34,12 +34,12 @@ API REST desenvolvida com Node.js e Express para gerenciamento de livros, inclui
 * Atualizar livro
 * Deletar livro
 
-### 🔗 Relacionamentos
+### Relacionamentos
 
 * Associação entre livros e usuários
 * Consulta com JOIN (`livros + usuarios`)
 
-### 🔎 Extras
+### Extras
 
 * Filtro por gênero
 * Paginação de resultados
