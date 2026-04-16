@@ -292,5 +292,5 @@ const PORT = process.env.PORT || 3001;
 
 // Inicializa o servidor
 app.listen(PORT, () => {
-  console.log("🚀 API com banco rodando em http://localhost:3001'!");
+  console.log('🚀 API com banco rodando na porta ${PORT}');
 });
