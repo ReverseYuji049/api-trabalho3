@@ -1,0 +1,806 @@
+{
+  "info": {
+    "_postman_id": "52c04a1c-e411-42c1-b5ce-66076f12d67c",
+    "name": "Trabalho3-API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52850701",
+    "_collection_link": "https://go.postman.co/collection/52850701-52c04a1c-e411-42c1-b5ce-66076f12d67c?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"teste@email.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Usuários",
+      "item": [
+        {
+          "name": "Criar usuário",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Yuji\",\r\n  \"email\": \"teste@email.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/usuarios",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "usuarios"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Livros",
+      "item": [
+        {
+          "name": "Criar livro",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"WATCHMAN: Origens\",\r\n  \"autor\": \"Reverse Yuji\",\r\n  \"genero\": \"Ação e Fantasia\",\r\n  \"paginas\": 120,\r\n  \"usuario_id\": 4\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/livros",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "livros"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar livros (paginação)",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Livro Teste\",\r\n  \"autor\": \"Autor X\",\r\n  \"genero\": \"Fantasia\",\r\n  \"paginas\": 300,\r\n  \"usuario_id\": 4\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/livros?page=1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "livros"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Página 4",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"titulo\": \"Livro Teste\",\r\n  \"autor\": \"Autor X\",\r\n  \"genero\": \"Fantasia\",\r\n  \"paginas\": 300,\r\n  \"usuario_id\": 4\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3001/api/livros?page=4",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3001",
+                  "path": [
+                    "api",
+                    "livros"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "4"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "663"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"297-dXuyWhNRoJoIdOBmGumOqtK3ulI\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Apr 2026 16:05:13 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 36,\n        \"titulo\": \"ONE PIECE: PIRATAS LIEUT\",\n        \"autor\": \"Reverse Yuji\",\n        \"genero\": \"Aventura e Fantasia\",\n        \"paginas\": 150,\n        \"usuario_id\": 4\n    },\n    {\n        \"id\": 37,\n        \"titulo\": \"Dimension File: Legado\",\n        \"autor\": \"Reverse Yuji\",\n        \"genero\": \"Enciclopédia Fictícia, Fantasia e Ficção-Histórica\",\n        \"paginas\": 450,\n        \"usuario_id\": 4\n    },\n    {\n        \"id\": 38,\n        \"titulo\": \"Dimension Tales: Multiverso\",\n        \"autor\": \"Reverse Yuji\",\n        \"genero\": \"Ficção-Histórica e Fantasia\",\n        \"paginas\": 2000,\n        \"usuario_id\": 4\n    },\n    {\n        \"id\": 39,\n        \"titulo\": \"Dimension Tales: Monarcas\",\n        \"autor\": \"Yuji\",\n        \"genero\": \"Romance\",\n        \"paginas\": 250,\n        \"usuario_id\": 1\n    },\n    {\n        \"id\": 40,\n        \"titulo\": \"VOLTS: Origens\",\n        \"autor\": \"Reverse Yuji\",\n        \"genero\": \"Ação e Fantasia\",\n        \"paginas\": 80,\n        \"usuario_id\": 4\n    }\n]"
+            },
+            {
+              "name": "Página 3",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"titulo\": \"Livro Teste\",\r\n  \"autor\": \"Autor X\",\r\n  \"genero\": \"Fantasia\",\r\n  \"paginas\": 300,\r\n  \"usuario_id\": 4\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3001/api/livros?page=3",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3001",
+                  "path": [
+                    "api",
+                    "livros"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "679"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"2a7-xKcIqCUB6qnz/orB60TXp/PONXU\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Apr 2026 16:09:16 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 31,\n        \"titulo\": \"Dimension File: Mitologia e Cultura\",\n        \"autor\": \"Reverse Yuji\",\n        \"genero\": \"Enciclopédia Fictícia\",\n        \"paginas\": 1500,\n        \"usuario_id\": 4\n    },\n    {\n        \"id\": 32,\n        \"titulo\": \"Dimension File: Civilização Celestial\",\n        \"autor\": \"Reverse Yuji\",\n        \"genero\": \"Enciclopédia Fictícia\",\n        \"paginas\": 900,\n        \"usuario_id\": 4\n    },\n    {\n        \"id\": 33,\n        \"titulo\": \"Dimension File: Família Scarlet\",\n        \"autor\": \"Reverse Yuji\",\n        \"genero\": \"Enciclopédia Fictícia\",\n        \"paginas\": 670,\n        \"usuario_id\": 4\n    },\n    {\n        \"id\": 34,\n        \"titulo\": \"ONE PIECE: ULTIMATE\",\n        \"autor\": \"Yuji\",\n        \"genero\": \"Aventura e Fantasia\",\n        \"paginas\": 900,\n        \"usuario_id\": 1\n    },\n    {\n        \"id\": 35,\n        \"titulo\": \"ONE PIECE: ALTERNATIVE UNIVERSE\",\n        \"autor\": \"Yuji\",\n        \"genero\": \"Aventura e Fantasia\",\n        \"paginas\": 300,\n        \"usuario_id\": 1\n    }\n]"
+            },
+            {
+              "name": "Página 2",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"titulo\": \"Livro Teste\",\r\n  \"autor\": \"Autor X\",\r\n  \"genero\": \"Fantasia\",\r\n  \"paginas\": 300,\r\n  \"usuario_id\": 4\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3001/api/livros?page=2",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3001",
+                  "path": [
+                    "api",
+                    "livros"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "644"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"284-Z6cUXZSo22dNdoerhcJ7E4hVx6s\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Apr 2026 16:09:41 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 20,\n        \"titulo\": \"X'Evil\",\n        \"autor\": \"Yuji\",\n        \"genero\": \"Ação\",\n        \"paginas\": 200,\n        \"usuario_id\": 1\n    },\n    {\n        \"id\": 22,\n        \"titulo\": \"Fall Wood\",\n        \"autor\": \"Reverse Yuji\",\n        \"genero\": \"Terror e Suspense\",\n        \"paginas\": 150,\n        \"usuario_id\": 4\n    },\n    {\n        \"id\": 23,\n        \"titulo\": \"Dimension Tales: Guerra da Dimension\",\n        \"autor\": \"Yuji\",\n        \"genero\": \"Ficção Histórica, Fantasia e Guerra\",\n        \"paginas\": 150,\n        \"usuario_id\": 4\n    },\n    {\n        \"id\": 24,\n        \"titulo\": \"Dimension Tales: Guerra dos Seis Reinos\",\n        \"autor\": \"Yuji\",\n        \"genero\": \"Ficção Histórica, Fantasia e Guerra\",\n        \"paginas\": 500,\n        \"usuario_id\": 1\n    },\n    {\n        \"id\": 25,\n        \"titulo\": \"Dimension Tales: Alvorada\",\n        \"autor\": \"Yuji\",\n        \"genero\": \"Ficção Histórica e Fantasia\",\n        \"paginas\": 1000,\n        \"usuario_id\": 1\n    }\n]"
+            },
+            {
+              "name": "Página 1",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"titulo\": \"Livro Teste\",\r\n  \"autor\": \"Autor X\",\r\n  \"genero\": \"Fantasia\",\r\n  \"paginas\": 300,\r\n  \"usuario_id\": 4\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:3001/api/livros?page=1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "3001",
+                  "path": [
+                    "api",
+                    "livros"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "644"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"284-Z6cUXZSo22dNdoerhcJ7E4hVx6s\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Thu, 16 Apr 2026 16:10:05 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": 20,\n        \"titulo\": \"X'Evil\",\n        \"autor\": \"Yuji\",\n        \"genero\": \"Ação\",\n        \"paginas\": 200,\n        \"usuario_id\": 1\n    },\n    {\n        \"id\": 22,\n        \"titulo\": \"Fall Wood\",\n        \"autor\": \"Reverse Yuji\",\n        \"genero\": \"Terror e Suspense\",\n        \"paginas\": 150,\n        \"usuario_id\": 4\n    },\n    {\n        \"id\": 23,\n        \"titulo\": \"Dimension Tales: Guerra da Dimension\",\n        \"autor\": \"Yuji\",\n        \"genero\": \"Ficção Histórica, Fantasia e Guerra\",\n        \"paginas\": 150,\n        \"usuario_id\": 4\n    },\n    {\n        \"id\": 24,\n        \"titulo\": \"Dimension Tales: Guerra dos Seis Reinos\",\n        \"autor\": \"Yuji\",\n        \"genero\": \"Ficção Histórica, Fantasia e Guerra\",\n        \"paginas\": 500,\n        \"usuario_id\": 1\n    },\n    {\n        \"id\": 25,\n        \"titulo\": \"Dimension Tales: Alvorada\",\n        \"autor\": \"Yuji\",\n        \"genero\": \"Ficção Histórica e Fantasia\",\n        \"paginas\": 1000,\n        \"usuario_id\": 1\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Filtrar por gênero",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/livros?genero=Ficção Histórica, Fantasia e Guerra",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "livros"
+              ],
+              "query": [
+                {
+                  "key": "genero",
+                  "value": "Ficção Histórica, Fantasia e Guerra"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Busca por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/livros/{{20}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "livros",
+                "{{20}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "JOIN",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/livros-com-usuario",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "livros-com-usuario"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar livro",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"X'Evil\",\r\n  \"autor\": \"Yuji\",\r\n  \"genero\": \"Ação\",\r\n  \"paginas\": 200\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/livros/{{20}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "livros",
+                "{{20}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar livros",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"X'Evil\",\r\n  \"autor\": \"Yuji\",\r\n  \"genero\": \"Ação\",\r\n  \"paginas\": 200\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/livros/{{21}}",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "livros",
+                "{{21}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listrar livros",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Livro Teste\",\r\n  \"autor\": \"Autor X\",\r\n  \"genero\": \"Fantasia\",\r\n  \"paginas\": 300,\r\n  \"usuario_id\": 1\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/livros",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "livros"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Livro não encontrado",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/api/livros/49",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "livros",
+                "49"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Teste de campo faltando",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"titulo\": \"Sem autor\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/livros/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "livros",
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Teste de ID inválido",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"titulo\": \"Sem autor\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/livros/abc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "livros",
+                "abc"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Teste de tipo inválido",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Livro inválido\",\r\n  \"autor\": \"Autor inválido\",\r\n  \"genero\": \"Gênero inválido\",\r\n  \"paginas\": \"2999\",\r\n  \"usuario_id\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3001/api/livros",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3001",
+              "path": [
+                "api",
+                "livros"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
